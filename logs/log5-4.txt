@@ -1,0 +1,10 @@
+okay so now what I need is to create an active/inactive toggle that goes inactive when the students departure date is reached
+    then what is now Student.object.all() should be filtered by active or not. Also there should be a way to display the 
+    inactive students
+for tomorrow:
+    finish assigning dates to the days to allow for filtering students
+    fix formatting with the packed lunches sheets
+    fix formatting so that sheet only takes up one page
+    figure out rules for the changes in the job list
+    add helpers to schedule
+    

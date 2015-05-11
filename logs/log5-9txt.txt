@@ -1,0 +1,13 @@
+things done:
+    fixed date issue yaay
+
+things to do
+    fix the weird lunch problem
+    assign helpers to tasks 
+        find an easy way to work with that kind of info
+    ck add datestamps to the schedule names
+    ck add departure functionality
+    make sure students only get assigned once a day
+    make the assigner more nuanced
+    add a night office 
+    makes sure the dates are clear

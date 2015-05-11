@@ -1,0 +1,10 @@
+Issues:
+    need to fix the second lunch functionality
+    need to get the lunch info and learn how to input it in the right places
+    need to assign things like night office and such
+    It would be nice if there were an interface for changing the above added later
+    Also need to learn how to filter job assignments based on work notes
+    Also should add allergy note potentially
+    programatically call the arrivals and departures
+        add an 'active' column to the workers, students, and helpers, so old data can be saved
+        maybe this should be part of meal assignments but probably unnecessary 

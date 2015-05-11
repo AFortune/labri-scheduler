@@ -1,0 +1,11 @@
+Okay first I am going to make the output pretty ck
+    second I need to create a special work table ck
+    third I need to reference that table on the student table ck
+    fourth I need a helper table and a place to reference it on the work table ck
+
+finally I need to create some integration with the word thing 
+this is where we are now:
+    I need to make the word doc creator fill out a schedule
+        At least we need to try to make the info into the word doc
+some issue with formatting 
+need to add the jobs to the generated document

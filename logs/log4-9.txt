@@ -1,0 +1,4 @@
+things for next time:
+    First I need to finish adding the schedule making code to views.py
+    Second I need to download the word api from here https://python-docx.readthedocs.org/en/latest/user/install.html
+    Third I need to create the template that will create the word file. using this new library.

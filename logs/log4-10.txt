@@ -1,0 +1,7 @@
+Okay what I need to do now is:
+    First I need to create the job assignment logic
+        This will involve creating an array of arrays that hold the members of the workCrews
+        Then somehow I need to assign these to only something hahaha
+    Second I need a simpler version for the meals
+    Third I need to get this to sync with the word stuff
+    

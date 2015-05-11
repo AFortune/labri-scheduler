@@ -1,0 +1,14 @@
+Okay so I need to create morning job and evening job sections
+    Along with this I should make certain jobs coincide with various days
+    
+What I have done
+    fixed the am pm issue and added a way to only assign certain activities to certain days yes
+    I got the work to be filtered by the arrival date
+    I got arrivals to be automatically made
+Things to do:
+    get departures to do the same
+    make sure that the dates work out
+    potentially create a today is prompt
+    add the real students
+    fix the several helpers to one job issue
+    integrate helper schedules
