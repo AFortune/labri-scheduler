@@ -7,7 +7,15 @@ import random
 import datetime
 #import arrow
 
-
+def jobAssignment(jobList, schdict, namelist, jnamelist):
+    a = 0    
+    b = 3
+    for j in jobList:
+        jnamelist.append(j.work_Name)
+        schdict[j.work_Name] = namelist[a:b]
+        del namelist[a:b]
+        a+=3
+        b+=3
 
 
 def docCreator():
@@ -40,7 +48,9 @@ def docCreator():
         checkDate = datetime.date(theDayYear,theDayMo,theDayDay)
         theDayDay += 1
         amJobs = Job.objects.filter(day__contains = weekday).filter(time='am')
+        beforeBreakfastJobs = Job.objects.filter(day__contains = weekday).filter(time='before_breakfast')
         pmJobs = Job.objects.filter(day__contains = weekday).filter(time='pm')
+        afterDinnerJobs = Job.objects.filter(day__contains = weekday).filter(time='after_dinner')
         #jobs = Job.objects.all()
         students = Student.objects.filter(arrival_Date__lt=checkDate).filter(departure_Date__gt=checkDate)
         arrivals = Student.objects.filter(arrival_Date = checkDate)
@@ -74,24 +84,29 @@ def docCreator():
         a = 0    
         b = 3
         
-        for j in amJobs:
-            jobnames.append(j.work_Name)
-            schdictAM[j.work_Name] = studentnames[a:b]
-            del studentnames[a:b]
-            a+=3
-            b+=3
+            
+        jobAssignment(amJobs, schdictAM, studentnames, jobnames)
+        # for j in amJobs:
+            # jobnames.append(j.work_Name)
+            # schdictAM[j.work_Name] = studentnames[a:b]
+            # del studentnames[a:b]
+            # a+=3
+            # b+=3
         
-        
-        q = 0    
-        r = 3
-        for jb in pmJobs:
-            jobnamesB.append(jb.work_Name)
-            schdictPM[jb.work_Name] = studentnames[q:r]
-            q+=3
-            r+=3
+        jobAssignment(pmJobs, schdictPM, studentnames, jobnamesB)
+        # q = 0    
+        # r = 3
+        # for jb in pmJobs:
+            # jobnamesB.append(jb.work_Name)
+            # schdictPM[jb.work_Name] = studentnames[q:r]
+            # q+=3
+            # r+=3
         
         c = 0
         d = 0
+        
+        
+        
         if len(studentnames) -1 > 14:        
             d = (len(studentnames)-1) /2
             
@@ -240,7 +255,7 @@ def docCreator():
         workPara_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
         tablew = document.add_table(rows=1, cols=2)
         cell1w = tablew.rows[0].cells[0]
-        cell1w.text = ("am\n \n 7:30 Breakfast Prep: \n 7:50 Trash out- \n 9:30am: \n \n" + workAM)
+        cell1w.text = ("am\n \n 7:30 Breakfast Prep: \n" + "\n 9:30am: \n \n" + workAM)
         cell2w = tablew.rows[0].cells[1]
-        cell2w.text = ("pm\n \n 3:00pm:\n \n" + workPM + "\nInternet collection at dinner- \nNight Office- \nDay Off- ")
-        document.save('oldschedules/' + pweekday +'.docx')
+        cell2w.text = ("pm\n \n 3:00pm:\n \n" + workPM )
+        document.save('test/' + pweekday +'.docx')
