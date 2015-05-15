@@ -16,8 +16,12 @@ def docCreator():
     #strDate = theDate.strftime('%m/%d/%Y')
     #intDay = int(theDate.day)
     theDay = datetime.date.today()
+    theDayDay = theDay.day + 1
+    theDayMo = theDay.month
+    theDayYear = theDay.year
+    startDay = datetime.date(theDayYear,theDayMo,theDayDay)
     weekList = []
-    weekdayNumber = theDay.weekday()
+    weekdayNumber = startDay.weekday()
     wkcounter = 0
     while wkcounter < 7:
         weekList.append(weekdayNumber)
@@ -27,9 +31,9 @@ def docCreator():
             weekdayNumber += 1
         wkcounter += 1
     weekdays3 = [weekdays[i] for i in weekList]
-    theDayDay = theDay.day
-    theDayMo = theDay.month
-    theDayYear = theDay.year
+    theDayDay = startDay.day
+    theDayMo = startDay.month
+    theDayYear = startDay.year
     for weekday in weekdays3: #this area allows for the program to be run any day
         #intDay = intDay + 1
         
@@ -38,7 +42,7 @@ def docCreator():
         amJobs = Job.objects.filter(day__contains = weekday).filter(time='am')
         pmJobs = Job.objects.filter(day__contains = weekday).filter(time='pm')
         #jobs = Job.objects.all()
-        students = Student.objects.filter(arrival_Date__lt=checkDate)
+        students = Student.objects.filter(arrival_Date__lt=checkDate).filter(departure_Date__gt=checkDate)
         arrivals = Student.objects.filter(arrival_Date = checkDate)
         departures = Student.objects.filter(departure_Date = checkDate)
         strArrivals = ""
@@ -161,7 +165,7 @@ def docCreator():
         tableB.borders={'All':Pt(.2)}
         row1B = tableB.rows[0]
         cell1B = row1B.cells[0]
-        cell1B.text = strstudentnames
+        cell1B.text = strstudentnames + strDepartures
         
         arrivals = document.add_paragraph("Arrivals: " + strArrivals)
         arrivals_format = arrivals.paragraph_format
@@ -188,7 +192,11 @@ def docCreator():
             tableLa = document.add_table(rows=1, cols=1)
             row1La = tableLa.rows[0]
             cell1La = row1La.cells[0]
-            cell1La.text = strstudentnames
+            if strArrivals:
+                cell1La.text = strstudentnames + ("("+ strArrivals + "?" + ")")
+            else:
+                cell1La.text = strstudentnames
+        
         else:
             locationLa = document.add_paragraph("Packed lunches are in the student fridge")
             locationLa_format = locationLa.paragraph_format
@@ -220,7 +228,10 @@ def docCreator():
         tableD = document.add_table(rows=1, cols=1)
         row1D = tableD.rows[0]
         cell1D = row1D.cells[0]
-        cell1D.text = strstudentnames
+        if strArrivals:
+            cell1D.text = strstudentnames + ("("+ strArrivals + "?" + ")")
+        else:
+            cell1D.text = strstudentnames
         
         workPara = document.add_paragraph("Work Assignments: if your name is not down for a work crew, you have a study day:")    
         workPara_format = workPara.paragraph_format
