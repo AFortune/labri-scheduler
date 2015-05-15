@@ -17,6 +17,17 @@ def jobAssignment(jobList, schdict, namelist, jnamelist):
         a+=3
         b+=3
 
+def stringifyJobs(jnamelist, schdict):
+    workString = ""
+    for w in jnamelist:
+        if workString != "":
+            workString += "\n"            
+        workString += (w + "- ")
+        
+        for wele in schdict[w]:
+            workString += (wele + "  ") 
+    return workString
+
 
 def docCreator():
     weekdays = Day_Info.objects.all().order_by('order')
@@ -81,26 +92,14 @@ def docCreator():
         
         
         random.shuffle(studentnames)
-        a = 0    
-        b = 3
         
-            
-        jobAssignment(amJobs, schdictAM, studentnames, jobnames)
-        # for j in amJobs:
-            # jobnames.append(j.work_Name)
-            # schdictAM[j.work_Name] = studentnames[a:b]
-            # del studentnames[a:b]
-            # a+=3
-            # b+=3
+        
+        jobAssignment(beforeBreakfastJobs,schdictAM, studentnames,jobnames)    
+        jobAssignment(amJobs, schdictAM, studentnames, jobnames)        
         
         jobAssignment(pmJobs, schdictPM, studentnames, jobnamesB)
-        # q = 0    
-        # r = 3
-        # for jb in pmJobs:
-            # jobnamesB.append(jb.work_Name)
-            # schdictPM[jb.work_Name] = studentnames[q:r]
-            # q+=3
-            # r+=3
+        jobAssignment(afterDinnerJobs, schdictPM, studentnames, jobnamesB)
+        
         
         c = 0
         d = 0
@@ -127,31 +126,10 @@ def docCreator():
             for ele in mealdict[m]:
                 lunch += (ele + " ")
 
-        workAM = ""
         
-        for w in schdictAM:           
-            
-            if workAM != "":
-                workAM += "\n"            
-            workAM += (w + "- ")
-            
-            for wele in schdictAM[w]:
-                workAM += (wele + "  ") 
-                # if wele == "Morning Grounds":
-                    # break
-                
         
-        workPM = ""
-        
-        for w in schdictPM:                      
-            if workPM != "":
-                workPM += "\n"            
-            workPM += (w + "- ")
-                
-            for wele in schdictPM[w]:
-                workPM += (wele + "  ") 
-                    # if wele == "Morning Grounds":
-                        # break
+        workAM = stringifyJobs(jobnames, schdictAM)       
+        workPM = stringifyJobs(jobnamesB, schdictPM)       
         
         
         
@@ -255,7 +233,7 @@ def docCreator():
         workPara_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
         tablew = document.add_table(rows=1, cols=2)
         cell1w = tablew.rows[0].cells[0]
-        cell1w.text = ("am\n \n 7:30 Breakfast Prep: \n" + "\n 9:30am: \n \n" + workAM)
+        cell1w.text = ("am\n \n \n" + "\n 9:30am: \n \n" + workAM)
         cell2w = tablew.rows[0].cells[1]
         cell2w.text = ("pm\n \n 3:00pm:\n \n" + workPM )
         document.save('test/' + pweekday +'.docx')
