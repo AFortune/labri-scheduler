@@ -92,6 +92,7 @@ def docCreator():
         
         
         random.shuffle(studentnames)
+        mealstudentNames = studentnames
         
         
         jobAssignment(beforeBreakfastJobs,schdictAM, studentnames,jobnames)    
@@ -158,7 +159,10 @@ def docCreator():
         tableB.borders={'All':Pt(.2)}
         row1B = tableB.rows[0]
         cell1B = row1B.cells[0]
-        cell1B.text = strstudentnames + strDepartures
+        if strDepartures:
+            cell1B.text = strstudentnames + strDepartures + "\nMeal Number:  " +  str(len(mealstudentNames) + len(departures))
+        else:
+            cell1B.text = strstudentnames + "\nMeal Number:  " +  str(len(mealstudentNames))
         
         arrivals = document.add_paragraph("Arrivals: " + strArrivals)
         arrivals_format = arrivals.paragraph_format
@@ -186,9 +190,9 @@ def docCreator():
             row1La = tableLa.rows[0]
             cell1La = row1La.cells[0]
             if strArrivals:
-                cell1La.text = strstudentnames + ("("+ strArrivals + "?" + ")")
+                cell1La.text = strstudentnames + ("("+ strArrivals + "?" + ")") + "\nMeal Number:  " +  str(len(mealstudentNames + len(arrivals)))
             else:
-                cell1La.text = strstudentnames
+                cell1La.text = strstudentnames + "\nMeal Number:  " +  str(len(mealstudentNames))
         
         else:
             locationLa = document.add_paragraph("Packed lunches are in the student fridge")
@@ -198,7 +202,7 @@ def docCreator():
         
         
         
-        if len(studentnames) > 14 and weekday.Lunch_B != 'none':
+        if len(mealstudentNames) > 14 and weekday.Lunch_B != 'none':
             locationLb = document.add_paragraph("At Chalet " + weekday.Lunch_B)#plus the location         
             locationLb_format = locationLb.paragraph_format
             locationLb_format.space_after = Pt(18)
@@ -206,7 +210,7 @@ def docCreator():
             tableLb = document.add_table(rows=1, cols=1)
             row1Lb = tableLb.rows[0]
             cell1Lb = row1Lb.cells[0]
-            cell1La.text = lunch[0: int(round((len(lunch)/2 -1)))] # comeback to this
+            cell1La.text = lunch[0: int(round((len(lunch)/2 -1)))] # comeback to this fixed part of the problem
             cell1Lb.text = lunch[ int(round((len(lunch))/2 )):len(lunch) - 1]
         
         dinnerTime = document.add_paragraph("6:30 Dinner -(everyone expected)")    
@@ -222,9 +226,9 @@ def docCreator():
         row1D = tableD.rows[0]
         cell1D = row1D.cells[0]
         if strArrivals:
-            cell1D.text = strstudentnames + ("("+ strArrivals + "?" + ")")
+            cell1D.text = strstudentnames + ("("+ strArrivals + "?" + ")") + "\nMeal Number:  " +  str(len(mealstudentNames + len(arrivals)))
         else:
-            cell1D.text = strstudentnames
+            cell1D.text = strstudentnames + "\nMeal Number:  " + str(len(mealstudentNames))
         
         workPara = document.add_paragraph("Work Assignments: if your name is not down for a work crew, you have a study day:")    
         workPara_format = workPara.paragraph_format
