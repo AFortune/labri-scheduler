@@ -16,6 +16,11 @@ def jobAssignment(jobList, schdict, namelist, jnamelist):
         del namelist[a:b]
         a+=3
         b+=3
+        
+def stringifyDictionary(unstrung, theString):
+    for wele in unstrung:
+        theString += (wele + "  ")    
+
 
 def stringifyJobs(jnamelist, schdict):
     workString = ""
@@ -24,9 +29,16 @@ def stringifyJobs(jnamelist, schdict):
             workString += "\n"            
         workString += (w + "- ")
         
-        for wele in schdict[w]:
-            workString += (wele + "  ") 
+        
+        stringifyDictionary(schdict[w], workString)
+        
     return workString
+
+def lunchAssignment(eaters):
+    lunches = {}
+    for eat in eaters:
+        if len(eaters) < 15:
+            lunches[a] = eaters # comeback
 
 
 def docCreator():
@@ -102,30 +114,32 @@ def docCreator():
         jobAssignment(afterDinnerJobs, schdictPM, studentnames, jobnamesB)
         
         
-        c = 0
-        d = 0
+        
+        
+        # c = 0
+        # d = 0
         
         
         
-        if len(studentnames) -1 > 14:        
-            d = (len(studentnames)-1) /2
+        # if len(studentnames) -1 > 14:        
+            # d = (len(studentnames)-1) /2
             
-        else:
-            d = len(studentnames)-1
+        # else:
+            # d = len(studentnames)-1
             
-        for m in mealplace:
-            mealdict[m] = studentnames[c:d]
+        # for m in mealplace:
+            # mealdict[m] = studentnames[c:d]
             
-            if d == len(studentnames)-1:
-                break 
-            c = d
-            d = len(studentnames)-1 # comeback
+            # if d == len(studentnames)-1:
+                # break 
+            # c = d
+            # d = len(studentnames)-1 # comeback
         
-        lunch = ""
-        for m in mealdict:
-            #lunch += m         
-            for ele in mealdict[m]:
-                lunch += (ele + " ")
+        # lunch = ""
+        # for m in mealdict:
+            # #lunch += m         
+            # for ele in mealdict[m]:
+                # lunch += (ele + " ")
 
         
         

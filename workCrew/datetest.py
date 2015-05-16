@@ -1,5 +1,3 @@
-from models import Student, Job, Day_Info 
+list = [1,2,3,4,5,6,7]
 
-weekdays = Day_Info.objects.all().order_by('order')
-
-print weekdays
+print "hey " + str(len(list))

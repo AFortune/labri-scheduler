@@ -43,11 +43,12 @@ class Worker(models.Model):
     
 class Day_Info(models.Model):
     day = models.CharField(max_length=200)
+    breakfast = models.CharField(max_length=200, default="with")
     Lunch_A = models.CharField(max_length=200)
     Lunch_B = models.CharField(max_length=200)
-    lecture = models.CharField(max_length=200)
-    order = models.IntegerField(null=True, blank=True)
-    dinner = models.CharField(max_length=200, null=True, blank=True)
+    lecture = models.CharField(max_length=200, default="none")
+    order = models.IntegerField(default="0", editable=False)
+    dinner = models.CharField(max_length=200, default="with")
     
     def __unicode__(self):
         return self.day
