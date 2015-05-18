@@ -44,6 +44,8 @@ class Job(models.Model):
 class Helper(models.Model):
     first_Name = models.CharField(max_length= 200)
     last_Name = models.CharField(max_length=200)
+    arrival_Date = models.DateField(null=True, blank=True)
+    departure_Date = models.DateField(null=True, blank=True)
     contact_info = models.CharField(max_length=200, null=True, blank=True)
     jobs = models.ManyToManyField(Job)
     def __unicode__(self):
