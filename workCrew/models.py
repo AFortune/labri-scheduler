@@ -42,7 +42,7 @@ class Worker(models.Model):
 #class Crew_Lead(models.Model):
     
 class Day_Info(models.Model):
-    day = models.CharField(max_length=200)
+    day = models.CharField(max_length=200, editable=False)
     breakfast = models.CharField(max_length=200, default="with")
     Lunch_A = models.CharField(max_length=200)
     Lunch_B = models.CharField(max_length=200)

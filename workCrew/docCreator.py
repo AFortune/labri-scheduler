@@ -160,14 +160,15 @@ def docCreator():
         day_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
         
         #breakfast infor
-        breakfastTime = document.add_paragraph("8:00am Breakfast -(everyone expected)")
+        breakfastTime = document.add_paragraph("8:00am Breakfast -(everyone expected)" )
         breakfastTime_format = breakfastTime.paragraph_format
         breakfastTime_format.space_after = Pt(18)
         breakfastTime_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        locationB = document.add_paragraph("At Chalet Bellevue")
+        locationB = document.add_paragraph("At Chalet Bellevue with " + weekday.breakfast)
         locationB_format = locationB.paragraph_format
         locationB_format.space_after = Pt(18)
-        locationB_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        locationB_format.alignment = WD_ALIGN_PARAGRAPH.CENTER        
+        
         
         tableB = document.add_table(rows=1, cols=1)
         tableB.borders={'All':Pt(.2)}
@@ -177,16 +178,28 @@ def docCreator():
             cell1B.text = strstudentnames + strDepartures + "\nMeal Number:  " +  str(len(mealstudentNames) + len(departures))
         else:
             cell1B.text = strstudentnames + "\nMeal Number:  " +  str(len(mealstudentNames))
+            
+        if weekday.day == "Monday":
+            prayerTime = document.add_paragraph("8:45am Prayer Meeting in the Lounge" )
+            prayerTime_format = prayerTime.paragraph_format
+            prayerTime_format.space_after = Pt(18)
+            prayerTime_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            
+        if weekday.lecture != "none" and weekday.day == "Friday":
+            lectureTime = document.add_paragraph("9:15am Lecture in Farel House" )
+            lectureTime_format = lectureTime.paragraph_format
+            lectureTime_format.space_after = Pt(18)
+            lectureTime_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
         
-        arrivals = document.add_paragraph("Arrivals: " + strArrivals)
-        arrivals_format = arrivals.paragraph_format
-        arrivals_format.space_before = Pt(18)
-        arrivals_format.space_after = Pt(0)
-        arrivals_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        departures = document.add_paragraph("Departures: " + strDepartures)
-        departures_format = departures.paragraph_format
-        departures_format.space_after = Pt(18)
-        departures_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_arrivals = document.add_paragraph("Arrivals: " + strArrivals)
+        p_arrivals_format = p_arrivals.paragraph_format
+        p_arrivals_format.space_before = Pt(18)
+        p_arrivals_format.space_after = Pt(0)
+        p_arrivals_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_departures = document.add_paragraph("Departures: " + strDepartures)
+        p_departures_format = p_departures.paragraph_format
+        p_departures_format.space_after = Pt(18)
+        p_departures_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
         
         
         
@@ -204,7 +217,7 @@ def docCreator():
             row1La = tableLa.rows[0]
             cell1La = row1La.cells[0]
             if strArrivals:
-                cell1La.text = strstudentnames + ("("+ strArrivals + "?" + ")") + "\nMeal Number:  " +  str(len(mealstudentNames + len(arrivals)))
+                cell1La.text = strstudentnames + ("("+ strArrivals + "?" + ")") + "\nMeal Number:  " +  str(len(mealstudentNames) + len(arrivals))
             else:
                 cell1La.text = strstudentnames + "\nMeal Number:  " +  str(len(mealstudentNames))
         
@@ -227,6 +240,12 @@ def docCreator():
             cell1La.text = lunch[0: int(round((len(lunch)/2 -1)))] # comeback to this fixed part of the problem
             cell1Lb.text = lunch[ int(round((len(lunch))/2 )):len(lunch) - 1]
         
+        if weekday.lecture != "none" and weekday.day == "Wednesday":
+            lectureTime = document.add_paragraph("9:15am Lecture in Farel House" )
+            lectureTime_format = lectureTime.paragraph_format
+            lectureTime_format.space_after = Pt(18)
+            lectureTime_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        
         dinnerTime = document.add_paragraph("6:30 Dinner -(everyone expected)")    
         dinnerTime_format = dinnerTime.paragraph_format
         dinnerTime_format.space_before = Pt(40)
@@ -240,7 +259,7 @@ def docCreator():
         row1D = tableD.rows[0]
         cell1D = row1D.cells[0]
         if strArrivals:
-            cell1D.text = strstudentnames + ("("+ strArrivals + "?" + ")") + "\nMeal Number:  " +  str(len(mealstudentNames + len(arrivals)))
+            cell1D.text = strstudentnames + ("("+ strArrivals + "?" + ")") + "\nMeal Number:  " +  str(len(mealstudentNames) + len(arrivals))
         else:
             cell1D.text = strstudentnames + "\nMeal Number:  " + str(len(mealstudentNames))
         
