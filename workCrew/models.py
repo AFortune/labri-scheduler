@@ -36,7 +36,7 @@ class Job(models.Model):
     work_Name = models.CharField(max_length=200)
     #helper_Name = models.ForeignKey(Helper, default=1)
     crew_Size =  models.CharField(max_length=200)
-    day = models.CharField(max_length=200, null=True, blank=True)
+    days = models.ManyToManyField(Day_Info, null=True, blank=True)
     time = models.CharField(max_length=200, null=True, blank=True)
     def __unicode__(self):
         return self.work_Name
