@@ -1,0 +1,10 @@
+Okay for today:
+    first fix departures ck
+    now find out about norman then do the new  sheets ck
+    checking through master list
+    
+Reflection on work:
+    this seems a little small at first but today I am somewhat blown away by what I can do by making 
+        functions to do the various sub-part of my task. It is a pretty big deal actually because
+        beforehand I never really thought of code interms of functions, and I have known that doing that is 
+        important. I must continue to think about this.

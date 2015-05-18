@@ -5,6 +5,19 @@ class WorkNote(models.Model):
     description = models.CharField(max_length= 200)
     def __unicode__(self):
         return self.description
+        
+class Day_Info(models.Model):
+    day = models.CharField(max_length=200, editable=False)
+    breakfast = models.CharField(max_length=200, default="with")
+    Lunch_A = models.CharField(max_length=200)
+    Lunch_B = models.CharField(max_length=200)
+    lecture = models.CharField(max_length=200, default="none")
+    order = models.IntegerField(default="0", editable=False)
+    dinner = models.CharField(max_length=200, default="with")
+    
+    def __unicode__(self):
+        return self.day
+
     
 class Student(models.Model):
     first_Name = models.CharField(max_length= 200)
@@ -17,21 +30,24 @@ class Student(models.Model):
     def __unicode__(self):
         return self.first_Name
         
-class Helper(models.Model):
-    first_Name = models.CharField(max_length= 200)
-    last_Name = models.CharField(max_length=200)
-    contact_info = models.CharField(max_length=200, null=True, blank=True)
-    def __unicode__(self):
-        return self.first_Name
+
 
 class Job(models.Model):
     work_Name = models.CharField(max_length=200)
-    helper_Name = models.ForeignKey(Helper)
+    #helper_Name = models.ForeignKey(Helper, default=1)
     crew_Size =  models.CharField(max_length=200)
     day = models.CharField(max_length=200, null=True, blank=True)
     time = models.CharField(max_length=200, null=True, blank=True)
     def __unicode__(self):
         return self.work_Name
+        
+class Helper(models.Model):
+    first_Name = models.CharField(max_length= 200)
+    last_Name = models.CharField(max_length=200)
+    contact_info = models.CharField(max_length=200, null=True, blank=True)
+    jobs = models.ManyToManyField(Job)
+    def __unicode__(self):
+        return self.first_Name
         
 class Worker(models.Model):
     first_Name = models.CharField(max_length= 200)
@@ -41,15 +57,4 @@ class Worker(models.Model):
         return self.first_Name
 #class Crew_Lead(models.Model):
     
-class Day_Info(models.Model):
-    day = models.CharField(max_length=200, editable=False)
-    breakfast = models.CharField(max_length=200, default="with")
-    Lunch_A = models.CharField(max_length=200)
-    Lunch_B = models.CharField(max_length=200)
-    lecture = models.CharField(max_length=200, default="none")
-    order = models.IntegerField(default="0", editable=False)
-    dinner = models.CharField(max_length=200, default="with")
-    
-    def __unicode__(self):
-        return self.day
 
