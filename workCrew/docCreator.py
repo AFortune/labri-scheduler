@@ -47,7 +47,7 @@ def docCreator():
     #strDate = theDate.strftime('%m/%d/%Y')
     #intDay = int(theDate.day)
     theDay = datetime.date.today()
-    theDayDay = theDay.day + 1
+    theDayDay = theDay.day #comeback
     theDayMo = theDay.month
     theDayYear = theDay.year
     startDay = datetime.date(theDayYear,theDayMo,theDayDay)
@@ -70,10 +70,10 @@ def docCreator():
         
         checkDate = datetime.date(theDayYear,theDayMo,theDayDay)
         theDayDay += 1
-        amJobs = Job.objects.filter(day__contains = weekday).filter(time='am')
-        beforeBreakfastJobs = Job.objects.filter(day__contains = weekday).filter(time='before_breakfast')
-        pmJobs = Job.objects.filter(day__contains = weekday).filter(time='pm')
-        afterDinnerJobs = Job.objects.filter(day__contains = weekday).filter(time='after_dinner')
+        amJobs = Job.objects.filter(day__day__contains = weekday).filter(time='am')
+        beforeBreakfastJobs = Job.objects.filter(day__day__contains = weekday).filter(time='before_breakfast')
+        pmJobs = Job.objects.filter(day__day__contains = weekday).filter(time='pm')
+        afterDinnerJobs = Job.objects.filter(day__day__contains = weekday).filter(time='after_dinner')
         #jobs = Job.objects.all()
         students = Student.objects.filter(arrival_Date__lt=checkDate).filter(departure_Date__gt=checkDate)
         arrivals = Student.objects.filter(arrival_Date = checkDate)
