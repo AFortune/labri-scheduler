@@ -28,9 +28,10 @@ def stringifyJobs(jnamelist, schdict):
         if workString != "":
             workString += "\n"            
         workString += (w + "- ")
+        for wele in schdict[w]:
+                workString += (wele + "  ") 
         
         
-        stringifyDictionary(schdict[w], workString)
         
     return workString
 
@@ -273,4 +274,4 @@ def docCreator():
         cell1w.text = ("am\n \n \n" + "\n 9:30am: \n \n" + workAM)
         cell2w = tablew.rows[0].cells[1]
         cell2w.text = ("pm\n \n 3:00pm:\n \n" + workPM )
-        document.save('test/' + pweekday +'.docx')
+        document.save('oldschedules/' + pweekday +'.docx')
