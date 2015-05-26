@@ -92,6 +92,7 @@ def docCreator():
         jobnamesB = []
         
         studentnames = []  
+        mealstudentNames = []
         strstudentnames = ""
         mealplace = ["a","b"]
         
@@ -101,11 +102,12 @@ def docCreator():
         
         for s in students:
             studentnames.append(s.first_Name)
+            mealstudentNames.append(s.first_Name)
             strstudentnames += (s.first_Name + " ")
         
         
         random.shuffle(studentnames)
-        mealstudentNames = studentnames
+         
         
         
         jobAssignment(beforeBreakfastJobs,schdictAM, studentnames,jobnames)    
@@ -271,7 +273,7 @@ def docCreator():
         workPara_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
         tablew = document.add_table(rows=1, cols=2)
         cell1w = tablew.rows[0].cells[0]
-        cell1w.text = ("am\n \n \n" + "\n 9:30am: \n \n" + workAM)
+        cell1w.text = ("am\n" + "\n 9:30am: \n \n" + workAM)
         cell2w = tablew.rows[0].cells[1]
         cell2w.text = ("pm\n \n 3:00pm:\n \n" + workPM )
         document.save('oldschedules/' + pweekday +'.docx')
