@@ -44,10 +44,8 @@ def lunchAssignment(eaters):
 
 def docCreator():
     weekdays = Day_Info.objects.all().order_by('order')
-    #theDate = datetime.date.today() #this may need to be replaced by a prompt of some kind
-    #strDate = theDate.strftime('%m/%d/%Y')
-    #intDay = int(theDate.day)
-    theDay = datetime.date.today()
+    
+    theDay = datetime.date.today() + datetime.timedelta(days = 1)
     theDayDay = theDay.day #comeback
     theDayMo = theDay.month
     theDayYear = theDay.year
@@ -66,15 +64,15 @@ def docCreator():
     theDayDay = startDay.day
     theDayMo = startDay.month
     theDayYear = startDay.year
-    for weekday in weekdays3: #this area allows for the program to be run any day
-        #intDay = intDay + 1
+    checkDate = datetime.date(theDayYear,theDayMo,theDayDay)
+    for weekday in weekdays3:      
         
-        checkDate = datetime.date(theDayYear,theDayMo,theDayDay)
-        theDayDay += 1
+        
         amJobs = Job.objects.filter(day__day__contains = weekday).filter(time='am')
         beforeBreakfastJobs = Job.objects.filter(day__day__contains = weekday).filter(time='before_breakfast')
         pmJobs = Job.objects.filter(day__day__contains = weekday).filter(time='pm')
         afterDinnerJobs = Job.objects.filter(day__day__contains = weekday).filter(time='after_dinner')
+        
         #jobs = Job.objects.all()
         students = Student.objects.filter(arrival_Date__lt=checkDate).filter(departure_Date__gt=checkDate)
         arrivals = Student.objects.filter(arrival_Date = checkDate)
@@ -156,6 +154,9 @@ def docCreator():
         
         #assign day
         pweekday = checkDate.strftime('%A' ) + " " + checkDate.strftime('%B' ) +  " " + str(checkDate.day) 
+        
+        checkDate += datetime.timedelta(days=1) #increment day
+        
         #pweekday = str(weekdays) + str(weekdays3)
         day = document.add_paragraph(pweekday)
         day_format = day.paragraph_format
@@ -276,4 +277,5 @@ def docCreator():
         cell1w.text = ("am\n" + "\n 9:30am: \n \n" + workAM)
         cell2w = tablew.rows[0].cells[1]
         cell2w.text = ("pm\n \n 3:00pm:\n \n" + workPM )
-        document.save('oldschedules/' + pweekday +'.docx')
+        document.save('test/' + pweekday +'.docx')
+        
