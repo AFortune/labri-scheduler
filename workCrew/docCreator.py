@@ -208,7 +208,7 @@ def docCreator():
                 row1La = tableLa.rows[0]
                 cell1La = row1La.cells[0]
                 if strArrivals:
-                    cell1La.text = ' '.join(halfList(mealstudentNames, "firstHalf")) + ("("+ strArrivals + "?" + ")") + "\nMeal Number:  " +  str(len(mealstudentNames) + len(arrivals))
+                    cell1La.text = ' '.join(halfList(mealstudentNames, "firstHalf")) + ("("+ strArrivals + "?" + ")") + "\nMeal Number:  " +  str(len(halfList(mealstudentNames, "firstHalf")) + len(arrivals))
                 else:
                     cell1La.text = strstudentnames + "\nMeal Number:  " +  str(len(mealstudentNames))
                 
@@ -219,7 +219,7 @@ def docCreator():
                 tableLb = document.add_table(rows=1, cols=1)
                 row1Lb = tableLb.rows[0]
                 cell1Lb = row1Lb.cells[0]                
-                cell1Lb.text = ' '.join(halfList(mealstudentNames, "secondHalf"))
+                cell1Lb.text = ' '.join(halfList(mealstudentNames, "secondHalf"))+ "\nMeal Number:  " +  str(len(halfList(mealstudentNames, "secondHalf"))
             
             else:
                 locationLa = document.add_paragraph("Packed lunches are in the student fridge")
