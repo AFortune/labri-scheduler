@@ -45,13 +45,11 @@ def lunchAssignment(eaters):
 def docCreator():
     weekdays = Day_Info.objects.all().order_by('order')
     
-    theDay = datetime.date.today() + datetime.timedelta(days = 1)
-    theDayDay = theDay.day #comeback
-    theDayMo = theDay.month
-    theDayYear = theDay.year
-    startDay = datetime.date(theDayYear,theDayMo,theDayDay)
+    checkDate = datetime.date.today() + datetime.timedelta(days = 1)
+    
+    
     weekList = []
-    weekdayNumber = startDay.weekday()
+    weekdayNumber = checkDate.weekday()
     wkcounter = 0
     while wkcounter < 7:
         weekList.append(weekdayNumber)
@@ -61,10 +59,8 @@ def docCreator():
             weekdayNumber += 1
         wkcounter += 1
     weekdays3 = [weekdays[i] for i in weekList]
-    theDayDay = startDay.day
-    theDayMo = startDay.month
-    theDayYear = startDay.year
-    checkDate = datetime.date(theDayYear,theDayMo,theDayDay)
+    
+    
     for weekday in weekdays3:      
         
         
