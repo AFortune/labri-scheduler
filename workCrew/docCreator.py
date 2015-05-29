@@ -35,11 +35,24 @@ def stringifyJobs(jnamelist, schdict):
         
     return workString
 
-def lunchAssignment(eaters):
-    lunches = {}
-    for eat in eaters:
-        if len(eaters) < 15:
-            lunches[a] = eaters # comeback
+def halfList(list, firstSecond):
+    firstHalf = []
+    secondHalf = []   
+    firstHalf = list[0:((len(list)-1)/2)]
+    secondHalf = list[((len(list) -1)/2): len(list)]
+    
+    if firstSecond == "firstHalf":
+        return firstHalf
+        
+    elif firstSecond == "secondHalf":
+        return secondHalf
+  
+
+# def lunchAssignment(eaters):
+    # lunches = {}
+    # for eat in eaters:
+        # if len(eaters) < 15:
+            # lunches[a] = eaters # comeback
 
 
 def docCreator():
@@ -101,6 +114,7 @@ def docCreator():
         
         
         random.shuffle(studentnames)
+        random.shuffle(mealstudentNames)
          
         
         
@@ -113,30 +127,7 @@ def docCreator():
         
         
         
-        # c = 0
-        # d = 0
-        
-        
-        
-        # if len(studentnames) -1 > 14:        
-            # d = (len(studentnames)-1) /2
-            
-        # else:
-            # d = len(studentnames)-1
-            
-        # for m in mealplace:
-            # mealdict[m] = studentnames[c:d]
-            
-            # if d == len(studentnames)-1:
-                # break 
-            # c = d
-            # d = len(studentnames)-1 # comeback
-        
-        # lunch = ""
-        # for m in mealdict:
-            # #lunch += m         
-            # for ele in mealdict[m]:
-                # lunch += (ele + " ")
+     
 
         
         
@@ -202,46 +193,72 @@ def docCreator():
         p_departures_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
         
         
-        
-        if weekday.Lunch_A != 'none':
-            lunchTime = document.add_paragraph("1:00 Lunch-(everyone expected)")    
-            lunchTime_format = lunchTime.paragraph_format
-            lunchTime_format.space_after = Pt(18)
-            lunchTime_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        if (len(mealstudentNames) + len(arrivals)) > 14:
+            if weekday.Lunch_A != 'none':
+                lunchTime = document.add_paragraph("1:00 Lunch-(everyone expected)")    
+                lunchTime_format = lunchTime.paragraph_format
+                lunchTime_format.space_after = Pt(18)
+                lunchTime_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                
+                locationLa = document.add_paragraph("At Chalet " + weekday.Lunch_A)#plus the location  
+                locationLa_format = locationLa.paragraph_format
+                locationLa_format.space_after = Pt(18)
+                locationLa_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                tableLa = document.add_table(rows=1, cols=1)
+                row1La = tableLa.rows[0]
+                cell1La = row1La.cells[0]
+                if strArrivals:
+                    cell1La.text = ' '.join(halfList(mealstudentNames, "firstHalf")) + ("("+ strArrivals + "?" + ")") + "\nMeal Number:  " +  str(len(mealstudentNames) + len(arrivals))
+                else:
+                    cell1La.text = strstudentnames + "\nMeal Number:  " +  str(len(mealstudentNames))
+                
+                locationLb = document.add_paragraph("At Chalet " + weekday.Lunch_B)#plus the location         
+                locationLb_format = locationLb.paragraph_format
+                locationLb_format.space_after = Pt(18)
+                locationLb_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                tableLb = document.add_table(rows=1, cols=1)
+                row1Lb = tableLb.rows[0]
+                cell1Lb = row1Lb.cells[0]                
+                cell1Lb.text = ' '.join(halfList(mealstudentNames, "secondHalf"))
             
-            locationLa = document.add_paragraph("At Chalet " + weekday.Lunch_A)#plus the location  
-            locationLa_format = locationLa.paragraph_format
-            locationLa_format.space_after = Pt(18)
-            locationLa_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            tableLa = document.add_table(rows=1, cols=1)
-            row1La = tableLa.rows[0]
-            cell1La = row1La.cells[0]
-            if strArrivals:
-                cell1La.text = strstudentnames + ("("+ strArrivals + "?" + ")") + "\nMeal Number:  " +  str(len(mealstudentNames) + len(arrivals))
             else:
-                cell1La.text = strstudentnames + "\nMeal Number:  " +  str(len(mealstudentNames))
-        
+                locationLa = document.add_paragraph("Packed lunches are in the student fridge")
+                locationLa_format = locationLa.paragraph_format
+                locationLa_format.space_after = Pt(18)
+                locationLa_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            
+            
+            
+            
+
         else:
-            locationLa = document.add_paragraph("Packed lunches are in the student fridge")
-            locationLa_format = locationLa.paragraph_format
-            locationLa_format.space_after = Pt(18)
-            locationLa_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            if weekday.Lunch_A != 'none':
+                lunchTime = document.add_paragraph("1:00 Lunch-(everyone expected)")    
+                lunchTime_format = lunchTime.paragraph_format
+                lunchTime_format.space_after = Pt(18)
+                lunchTime_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                
+                locationLa = document.add_paragraph("At Chalet " + weekday.Lunch_A)#plus the location  
+                locationLa_format = locationLa.paragraph_format
+                locationLa_format.space_after = Pt(18)
+                locationLa_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                tableLa = document.add_table(rows=1, cols=1)
+                row1La = tableLa.rows[0]
+                cell1La = row1La.cells[0]
+                if strArrivals:
+                    cell1La.text = strstudentnames + ("("+ strArrivals + "?" + ")") + "\nMeal Number:  " +  str(len(mealstudentNames) + len(arrivals))
+                else:
+                    cell1La.text = strstudentnames + "\nMeal Number:  " +  str(len(mealstudentNames))
+            
+            else:
+                locationLa = document.add_paragraph("Packed lunches are in the student fridge")
+                locationLa_format = locationLa.paragraph_format
+                locationLa_format.space_after = Pt(18)
+                locationLa_format.alignment = WD_ALIGN_PARAGRAPH.CENTER        
         
-        
-        
-        if len(mealstudentNames) > 14 and weekday.Lunch_B != 'none':
-            locationLb = document.add_paragraph("At Chalet " + weekday.Lunch_B)#plus the location         
-            locationLb_format = locationLb.paragraph_format
-            locationLb_format.space_after = Pt(18)
-            locationLb_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            tableLb = document.add_table(rows=1, cols=1)
-            row1Lb = tableLb.rows[0]
-            cell1Lb = row1Lb.cells[0]
-            cell1La.text = lunch[0: int(round((len(lunch)/2 -1)))] # comeback to this fixed part of the problem
-            cell1Lb.text = lunch[ int(round((len(lunch))/2 )):len(lunch) - 1]
         
         if weekday.lecture != "none" and weekday.day == "Wednesday":
-            lectureTime = document.add_paragraph("9:15am Lecture in Farel House" )
+            lectureTime = document.add_paragraph("2:00pm Lecture in Farel House" )
             lectureTime_format = lectureTime.paragraph_format
             lectureTime_format.space_after = Pt(18)
             lectureTime_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
