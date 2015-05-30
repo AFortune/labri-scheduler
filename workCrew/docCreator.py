@@ -290,5 +290,5 @@ def docCreator():
         cell1w.text = ("am\n" + "\n 9:30am: \n \n" + workAM)
         cell2w = tablew.rows[0].cells[1]
         cell2w.text = ("pm\n \n 3:00pm:\n \n" + workPM )
-        document.save('test/' + pweekday +'.docx')
+        document.save('oldschedules/' + pweekday +'.docx')
         
