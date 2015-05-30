@@ -219,7 +219,7 @@ def docCreator():
                 tableLb = document.add_table(rows=1, cols=1)
                 row1Lb = tableLb.rows[0]
                 cell1Lb = row1Lb.cells[0]                
-                cell1Lb.text = ' '.join(halfList(mealstudentNames, "secondHalf"))+ "\nMeal Number:  " +  str(len(halfList(mealstudentNames, "secondHalf"))
+                cell1Lb.text = ' '.join(halfList(mealstudentNames, "secondHalf"))+ "\nMeal Number:  " +  str(len(halfList(mealstudentNames, "secondHalf")))
             
             else:
                 locationLa = document.add_paragraph("Packed lunches are in the student fridge")
