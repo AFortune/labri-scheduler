@@ -101,7 +101,7 @@ def docCreator():
         studentnames = []  
         mealstudentNames = []
         strstudentnames = ""
-        mealplace = ["a","b"]
+        
         
         schdictAM = {}
         schdictPM = {}

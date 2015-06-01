@@ -1,3 +1,4 @@
+import datetime
 def halfList(list, firstSecond):
     firstHalf = []
     secondHalf = []   
@@ -10,9 +11,15 @@ def halfList(list, firstSecond):
     elif firstSecond == "secondHalf":
         return secondHalf
   
-array = ["aaron","david","Katrina", "Joseph", "Wyatt","Andrew", "Greg", "Wesley", "George", "ten", "eleven", "twelve", "George", "ten", "eleven", "twelve","12"]
-print halfList(array, "firstHalf")
-print ' '.join(halfList(array, "secondHalf"))
+arrayPeeps = ["aaron","david","Katrina", "Joseph", "Wyatt","Andrew", "Greg", "Wesley", "George", "ten", "eleven", "twelve", "George", "ten", "eleven", "twelve","12"]
+arrayJobs = ["Grounds", "Cleaning"]
+
+def simpleAssign(listP, listJ):
+    resultdict = dict.fromkeys(listJ, [])
+    for 
+        
+        
+    #return resultdict
 
 def cycleAssignment(dict, jobList, namelist):
     while x == 0:
@@ -23,6 +30,17 @@ testdict = {
     "Cleaning": ["david", "joe"],
 
 }
+def thisweeksdates():
+    date = datetime.date.today() + datetime.timedelta(days = 1)
+    dateList = []
+    dayCount = 0
+    while dayCount < 7:
+        fileDateString = "oldschedules/" + date.strftime('%A' ) + " " + date.strftime('%B' ) +  " " + str(date.day) + ".docx"
+        dateList.append(fileDateString)
+        date = date + datetime.timedelta(days = 1)
+        dayCount += 1
+    return dateList
 
 
-print testdict.keys()[0]
+# print testdict.keys()[0]
+simpleAssign(arrayPeeps, arrayJobs)
